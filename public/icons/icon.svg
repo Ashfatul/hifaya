@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="sageGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2F6A4F" />
+      <stop offset="100%" stop-color="#1E4634" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E5BE90" />
+      <stop offset="100%" stop-color="#D4A373" />
+    </linearGradient>
+  </defs>
+  <!-- Background with smooth rounded corners -->
+  <rect width="512" height="512" rx="112" fill="url(#sageGrad)" />
+  <rect x="24" y="24" width="464" height="464" rx="92" fill="none" stroke="#FFFFFF" stroke-width="4" opacity="0.15" />
+  
+  <!-- Crescent Moon -->
+  <path d="M 270 140 
+           A 130 130 0 1 0 380 340 
+           A 115 115 0 1 1 270 140 Z" 
+        fill="url(#goldGrad)" />
+        
+  <!-- Star -->
+  <polygon points="345,160 353,184 378,184 358,199 366,223 345,208 324,223 332,199 312,184 337,184" 
+           fill="#FCFBF7" />
+</svg>

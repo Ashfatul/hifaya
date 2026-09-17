@@ -9,6 +9,7 @@ import { useFontSize } from '@/hooks/useFontSize';
 import { useRoutineProgress } from '@/hooks/useRoutineProgress';
 import { useBookmarks } from '@/hooks/useBookmarks';
 import { useReminders } from '@/hooks/useReminders';
+import { usePWA } from '@/hooks/usePWA';
 
 import { Header } from '@/components/dashboard/Header';
 import { RoutineTracker } from '@/components/dashboard/RoutineTracker';
@@ -16,6 +17,8 @@ import { QuickFilter } from '@/components/dashboard/QuickFilter';
 import { DuaCard } from '@/components/dashboard/DuaCard';
 import { ReminderModal } from '@/components/reminder/ReminderModal';
 import { SunnahGuidanceModal } from '@/components/SunnahGuidanceModal';
+import { PWAInstallModal } from '@/components/common/PWAInstallModal';
+import { PWAInstallBanner } from '@/components/common/PWAInstallBanner';
 import { Footer } from '@/components/Footer';
 import { toBengaliNumber } from '@/components/common/TasbihCounter';
 
@@ -52,6 +55,13 @@ export default function HomePage() {
     updateBedtime,
     sendTestNotification,
   } = useReminders();
+  const {
+    isInstalled,
+    isIOS,
+    showInstallModal,
+    setShowInstallModal,
+    promptInstall,
+  } = usePWA();
 
   // State
   const [selectedCategory, setSelectedCategory] = useState<DuaCategory | 'all'>('all');
@@ -138,6 +148,12 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-[#FCFBF7] flex flex-col selection:bg-[#EBF4EF]">
+      {/* PWA Install Notification Banner */}
+      <PWAInstallBanner
+        onOpenModal={() => setShowInstallModal(true)}
+        isInstalled={isInstalled}
+      />
+
       {/* Header */}
       <Header
         profile={profile}
@@ -151,6 +167,8 @@ export default function HomePage() {
         onResetFont={reset}
         onOpenReminders={() => setIsReminderOpen(true)}
         onOpenGuidance={() => setIsGuidanceOpen(true)}
+        onOpenInstall={() => setShowInstallModal(true)}
+        isInstalled={isInstalled}
       />
 
       {/* Main Content Area */}
@@ -380,6 +398,15 @@ export default function HomePage() {
       <SunnahGuidanceModal
         isOpen={isGuidanceOpen}
         onClose={() => setIsGuidanceOpen(false)}
+      />
+
+      {/* PWA Install Modal */}
+      <PWAInstallModal
+        isOpen={showInstallModal}
+        onClose={() => setShowInstallModal(false)}
+        onInstall={promptInstall}
+        isIOS={isIOS}
+        isInstalled={isInstalled}
       />
 
       {/* Footer */}

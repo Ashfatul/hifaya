@@ -1,16 +1,65 @@
 {
-  "name": "Hifaya (হিফায়া) — ইসলামিক শিশু হেফাজত",
+  "name": "Hifaya (হিফায়া) — ইসলামিক শিশু হেফাজত ও দোয়া",
   "short_name": "Hifaya",
-  "description": "শিশুর হেফাজত, বদনজর, সকাল-সন্ধ্যা ও ঘুমের দোয়া",
+  "description": "শিশুদের সুরক্ষা, সুস্থতা, বদনজর থেকে বাঁচা এবং পিতা-মাতার প্রতিদিনের আমলের ইসলামিক অ্যাপ।",
   "start_url": "/",
+  "id": "/",
+  "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
   "background_color": "#FCFBF7",
   "theme_color": "#2F6A4F",
+  "lang": "bn",
+  "dir": "ltr",
+  "categories": ["lifestyle", "education", "utilities"],
   "icons": [
     {
-      "src": "/favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "সকালের হেফাজত",
+      "short_name": "সকাল",
+      "description": "ফজর পরবর্তী ৩ কুল ও নববী সুরক্ষার দোয়া",
+      "url": "/routine",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "মাগরিবের সতর্কতা",
+      "short_name": "মাগরিব",
+      "description": "সূর্যাস্তের সতর্কতা ও দোয়াসমূহ",
+      "url": "/routine",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "ঘুমের আমল",
+      "short_name": "ঘুম",
+      "description": "আয়াতুল কুরসী ও রাতের ঘুমের আমল",
+      "url": "/routine",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
     }
   ]
 }

@@ -8,7 +8,9 @@ import { useFontSize } from '@/hooks/useFontSize';
 import { useRoutineProgress } from '@/hooks/useRoutineProgress';
 import { GenderSelector } from '@/components/common/GenderSelector';
 import { FontSizeToggle } from '@/components/common/FontSizeToggle';
-import { ArrowLeft, User, Bell, Trash2, Check } from 'lucide-react';
+import { PWAInstallModal } from '@/components/common/PWAInstallModal';
+import { usePWA } from '@/hooks/usePWA';
+import { ArrowLeft, User, Bell, Trash2, Check, Download, Smartphone } from 'lucide-react';
 
 export default function SettingsPage() {
   const { profile, updateGender, updateName } = useBabyProfile();
@@ -23,6 +25,13 @@ export default function SettingsPage() {
   } = useReminders();
   const { scale, increase, decrease, reset } = useFontSize();
   const { resetToday } = useRoutineProgress();
+  const {
+    isInstalled,
+    isIOS,
+    showInstallModal,
+    setShowInstallModal,
+    promptInstall,
+  } = usePWA();
 
   const [inputName, setInputName] = useState(profile.name);
   const [savedToast, setSavedToast] = useState(false);
@@ -247,6 +256,37 @@ export default function SettingsPage() {
           </div>
         </section>
 
+        {/* PWA App Install Card */}
+        <section className="bg-white rounded-3xl p-6 sm:p-8 border border-[#D1E5D9] shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 rounded-2xl bg-[#EBF4EF] text-[#2F6A4F] flex items-center justify-center shrink-0">
+              <Smartphone className="w-5 h-5" />
+            </div>
+            <div>
+              <h2 className="text-base font-bold text-[#1B362A]">ডিভাইসে অ্যাপ ইনস্টল (PWA)</h2>
+              <p className="text-xs text-[#526E60]">
+                ইন্টারনেট ছাড়া অফলাইনে দ্রুত ব্যবহারের জন্য আপনার ফোন বা পিসিতে অ্যাপ হিসেবে ইনস্টল করুন
+              </p>
+            </div>
+          </div>
+
+          {isInstalled ? (
+            <div className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold whitespace-nowrap">
+              <Check className="w-4 h-4" />
+              <span>ইনস্টল করা আছে</span>
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={() => setShowInstallModal(true)}
+              className="flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-[#2F6A4F] text-white text-xs font-bold hover:bg-[#1E4634] shadow-xs transition-all whitespace-nowrap active:scale-95"
+            >
+              <Download className="w-4 h-4" />
+              <span>অ্যাপ ইনস্টল করুন</span>
+            </button>
+          )}
+        </section>
+
         {/* Data Reset Section */}
         <section className="bg-white rounded-3xl p-6 sm:p-8 border border-rose-200 shadow-xs flex items-center justify-between gap-4">
           <div>
@@ -268,6 +308,15 @@ export default function SettingsPage() {
             আজকের আমলের চেকলিস্ট সফলভাবে রিসেট করা হয়েছে।
           </div>
         )}
+
+        {/* PWA Install Modal */}
+        <PWAInstallModal
+          isOpen={showInstallModal}
+          onClose={() => setShowInstallModal(false)}
+          onInstall={promptInstall}
+          isIOS={isIOS}
+          isInstalled={isInstalled}
+        />
       </main>
     </div>
   );

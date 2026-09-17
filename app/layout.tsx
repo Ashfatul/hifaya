@@ -9,12 +9,26 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  applicationName: 'Hifaya',
   title: 'Hifaya (হিফায়া) — ইসলামিক শিশু হেফাজত, প্রতিদিনের দোয়া ও রুটিন',
   description: 'শিশুদের সুরক্ষা, বদনজর থেকে বাঁচা, সুস্থতা ও পিতা-মাতার প্রতিদিনের আমল, সকাল-সন্ধ্যার হেফাজত এবং ঘুমের মাসনূন দোয়া।',
   manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Hifaya',
+  },
+  formatDetection: {
+    telephone: false,
+  },
   icons: {
-    icon: '/favicon.ico',
-    apple: '/favicon.ico',
+    icon: [
+      { url: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icons/icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: [
+      { url: '/icons/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
   keywords: [
     'হিফায়া',

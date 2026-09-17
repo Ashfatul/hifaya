@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { BabyProfile, ChildGender } from '@/types/dua';
 import { FontScale } from '@/hooks/useFontSize';
 import { FontSizeToggle } from '../common/FontSizeToggle';
-import { Bell, BookOpen, User, ChevronDown } from 'lucide-react';
+import { Bell, BookOpen, User, ChevronDown, Download } from 'lucide-react';
 
 interface HeaderProps {
   profile: BabyProfile;
@@ -16,6 +16,8 @@ interface HeaderProps {
   onResetFont: () => void;
   onOpenReminders: () => void;
   onOpenGuidance: () => void;
+  onOpenInstall?: () => void;
+  isInstalled?: boolean;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -27,6 +29,8 @@ export const Header: React.FC<HeaderProps> = ({
   onResetFont,
   onOpenReminders,
   onOpenGuidance,
+  onOpenInstall,
+  isInstalled = false,
 }) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [tempName, setTempName] = useState(profile.name);
@@ -113,6 +117,19 @@ export const Header: React.FC<HeaderProps> = ({
               >
                 <Bell className="w-4 h-4" />
               </button>
+
+              {/* Install PWA Button */}
+              {onOpenInstall && !isInstalled && (
+                <button
+                  type="button"
+                  onClick={onOpenInstall}
+                  className="p-2 rounded-xl bg-[#2F6A4F] text-white hover:bg-[#1E4634] transition-all shadow-2xs"
+                  title="অ্যাপ ফোনে ইনস্টল করুন (PWA)"
+                  aria-label="Install App"
+                >
+                  <Download className="w-4 h-4" />
+                </button>
+              )}
             </div>
           </div>
         </div>
