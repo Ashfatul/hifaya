@@ -1,0 +1,16 @@
+{
+  "name": "Hifaya (হিফায়া) — ইসলামিক শিশু হেফাজত",
+  "short_name": "Hifaya",
+  "description": "শিশুর হেফাজত, বদনজর, সকাল-সন্ধ্যা ও ঘুমের দোয়া",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FCFBF7",
+  "theme_color": "#2F6A4F",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}
